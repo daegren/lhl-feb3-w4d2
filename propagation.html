@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Propagation Demo</title>
+
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:after,
+      *:before {
+        box-sizing: inherit;
+      }
+
+      #blue {
+        width: 500px;
+        height: 500px;
+        background-color: blue;
+        position: relative;
+      }
+
+      #red {
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        background-color: red;
+      }
+    </style>
+
+    <script type="text/javascript">
+      const handleClick = (name, stopPropagation = false) => e => {
+        if (stopPropagation) {
+          e.stopPropagation();
+        }
+        console.log(`${name} Clicked!`, e.clientX, e.clientY);
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const blueBox = document.getElementById("blue");
+        const redBox = document.getElementById("red");
+
+        redBox.addEventListener("click", handleClick("Red Box"));
+
+        blueBox.addEventListener("click", handleClick("Blue Box", true));
+
+        document.body.addEventListener("click", handleClick("body"));
+
+        document.addEventListener("click", handleClick("Document"));
+      });
+    </script>
+  </head>
+  <body>
+    <div id="blue">
+      <div id="red"></div>
+    </div>
+  </body>
+</html>

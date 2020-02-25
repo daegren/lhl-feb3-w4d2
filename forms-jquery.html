@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Events Demo</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      // document.addEventListener("DOMContentLoaded", () => {
+      $(document).ready(() => {
+        //   const form = document.getElementById("my-form");
+        const $form = $("#my-form");
+        //   const messages = document.getElementById("messages");
+        const $messages = $("#messages");
+        //   form.addEventListener("submit", e => {
+        $form.on("submit", e => {
+          e.preventDefault();
+          //     const input = document.getElementById("name");
+          const $input = $("#name");
+          //     const message = document.createElement("article");
+          const $message = $("<article>");
+          //     message.innerText = input.value;
+          $message.text($input.val());
+          //     messages.appendChild(message);
+          $messages.append($message);
+          //     input.value = "";
+          $input.val("");
+          //     input.focus();
+          $input.focus();
+        });
+        //   });
+      });
+      // });
+    </script>
+  </head>
+  <body>
+    <h1>Form Demo</h1>
+
+    <form id="my-form">
+      <input type="text" name="name" id="name" />
+
+      <div>
+        <input type="submit" value="Submit Form" />
+      </div>
+    </form>
+
+    <div id="messages"></div>
+  </body>
+</html>

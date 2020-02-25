@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Events Demo</title>
+
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("my-form");
+        const messages = document.getElementById("messages");
+
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+          const input = document.getElementById("name");
+
+          const message = document.createElement("article");
+          message.innerText = input.value;
+          messages.appendChild(message);
+
+          input.value = "";
+          input.focus();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Form Demo</h1>
+
+    <form id="my-form">
+      <input type="text" name="name" id="name" />
+
+      <div>
+        <input type="submit" value="Submit Form" />
+      </div>
+    </form>
+
+    <div id="messages"></div>
+  </body>
+</html>
